@@ -1,0 +1,46 @@
+<page-content>
+	<div class="col-sm-12 no-padding">
+		<button type="button" class='btn btn-primary' ng-click="usersVm.addNew()">
+			<i class='fa fa-user'></i>Add User
+		</button>
+		<loading ng-if="loading"></loading>
+		<div class="pull-right no-padding-right col-sm-3">
+			<div class="input-group form-group">
+				<input type="text" class="form-control" ng-model="searchText" placeholder="Search ..." />
+				<span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="fa fa-search icon_only"></i></button>
+                    </span>
+			</div>
+		</div>
+	</div>
+
+	<div ng-include="'user_form'"></div>
+	<div ng-class="usersVm.gridSize" class="no-padding">
+		<div class="panel panel-default top-default">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="num_col_1">#</th>
+							<th>Name</th>
+							<th>User Name</th>
+							<th>Phone Number</th>
+							<th>Email</th>
+							<th>Role</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="user in usersVm.records | filter:searchText" ng-click="usersVm.edit(user)" class="pointer" ng-class="{ active: usersVm.newRecord.id == user.id}">
+							<td>{{$index + 1}}</td>
+							<td>{{user.name}}</td>
+							<td>{{user.userName}}</td>
+							<td>{{user.phoneNumber}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.role.name}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</page-content>

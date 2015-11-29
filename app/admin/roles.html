@@ -1,0 +1,42 @@
+<page-content>
+	<div class="side_form col-sm-12 no-padding">
+		<button type="button" ng-click="rolesVm.addNew()" class="btn btn-primary">
+			<i class="fa fa-plus"></i>Create Role
+		</button>
+		<loading ng-if="loading"></loading>
+		<div class="pull-right col-sm-3 no-padding-right">
+			<div class="input-group form-group">
+				<input type="text" class="form-control" ng-model="searchText" placeholder="Search ..." />
+				<span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="fa fa-search icon_only"></i></button>
+                    </span>
+			</div>
+		</div>
+	</div>
+	<div ng-include="'role_form'"></div>
+	<div ng-class="rolesVm.gridSize" class="no-padding">
+		<div class="panel panel-default top-default">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="num_col_1">#</th>
+							<th>Name</th>
+							<th>Notes</th>
+							<th>Privileges</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="role in rolesVm.records | filter: searchText" ng-click="rolesVm.edit(role)" 
+							class="link-row" ng-class="{ active: rolesVm.newRecord.id == role.id}">
+							<td>{{$index + 1}}</td>
+							<td>{{role.name}}</td>
+							<td>{{role.notes}}</td>
+							<td>{{role.privileges.length || 0}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</page-content>

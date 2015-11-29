@@ -1,0 +1,64 @@
+<page-header title="Customers" icon="fa fa-user"></page-header>
+
+<page-content>
+	<div class="side_form col-sm-12 no-padding">
+		<button type="button" class="btn btn-primary" ng-click="customerVm.addNew()">
+			<i class="fa fa-plus"></i>Add New Customer
+		</button>
+
+		<loading ng-if="loading"></loading>
+		<filter-box class="pull-right clear-padding-right" name="Name" on-search="customerVm.fetch(filter)" placeholder="Search by name" advance="true">
+			<input type="text" class="form-control" ng-model="filter.phoneNumber" placeholder="Phone Number" />
+			<input type="text" class="form-control" ng-model="filter.email" placeholder="Email" />
+			<select ui-select2="{allowClear:true}" class="form-control" ng-model="filter.categoryId" data-placeholder="Category" ng-options="category.id as category.name for category in categories">
+				<option></option>
+			</select>
+		</filter-box>
+	</div>
+	
+	<div ng-include="'customer_form'"></div>
+	
+	<div ng-class="customerVm.gridSize" class="no-padding">
+		<div class="panel panel-default top-default">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="num_col_1">#</th>
+							<th>Name</th>
+							<th>Phone Number</th>
+							<th>Email</th>
+							<th>Residential Address</th>
+							<th>Postal Address</th>
+							<th>Debt</th>
+							<th class="num_col_3"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="customer in customerVm.records">
+							<td>{{$index + 1}}</td>
+							<td>{{customer.name}}</td>
+							<td>{{customer.phoneNumber}}</td>
+							<td>{{customer.email}}</td>
+							<td>{{customer.residentialAddress}}</td>
+							<td>{{customer.postalAddress}}</td>
+							<td>{{customer.totalDebt | currency: ''}}</td>
+							<td>
+								<a href="#/customers/{{customer.Id}}" uib-tooltip="Open Account"><i class="fa fa-folder-open"></i></a>
+								<a href="" uib-tooltip="Edit" ng-if="mainVm.isAuthorize('customer.edit')" ng-click="customerVm.edit(customer)"><i class="fa fa-edit"></i></a>
+								<confirm-dialog message="Are you sure you want to delete this customer?" uib-tooltip="Delete"
+									title="Delete Customer"	on-confirm="customerVm.deleteRecord(customer)">
+									<i class="fa fa-trash"></i>
+								</confirm-dialog>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<span>Showing Page: {{customerVm.currentPage}} of {{customerVm.totalPages}}</span>
+				<uib-pager total-items="customerVm.totalRecords" ng-model="customerVm.currentPage"></uib-pager>
+			</div>
+		</div>
+	</div>
+</page-content>

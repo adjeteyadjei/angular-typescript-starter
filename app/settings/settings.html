@@ -1,0 +1,16 @@
+<page-header title="Settings" icon="fa fa-cogs">
+	<div class="">
+		<select ui-select2="{allowClear:true}" style="width: 300px;margin-top: -6px;"
+			 ng-model="model" data-placeholder="Select Model" class='form-control' 
+			 ng-change="settingsVm.gotoSetting(model)" 
+			 ng-options='model as model.label for model in settingsVm.models'>
+			<option value=""></option>
+		</select>
+	</div>
+</page-header>
+
+<div ui-view="">
+    <p class="blank-page-msg">
+        To configure catelogue and other settings, select the setting <b>model</b> in the select box above.
+    </p>
+</div>

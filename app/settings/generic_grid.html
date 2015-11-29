@@ -1,0 +1,63 @@
+<page-content>
+    <grid-controls>
+        <button type="button" ng-disabled="!settingVm.model" ng-if="settingVm.model.name != 'appsetting'" class='btn btn-primary'
+        ng-click="settingVm.addNew()">
+            <i class='fa fa-plus'></i>Add {{settingVm.model.label}}
+        </button>
+    </grid-controls>
+
+    <div class="col-sm-4 no-padding-left" ng-show="settingVm.showForm">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">{{settingVm.formTitle}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-default btn-sm" ng-click="settingVm.closeForm()" type="button" uib-tooltip="Close">
+                        <i class="fa fa-ban icon_only"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="Name">Name:</label>
+                    <input type="text" id="Name" ng-disabled="settingVm.model.name == 'appsetting'" class="form-control" 
+                        ng-model="settingVm.newRecord.name" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="Notes">Notes:</label>
+                    <textarea id="Notes" class="form-control" ng-model="settingVm.newRecord.notes" cols="5" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-success" id="save" ng-click="settingVm.saveRecord(settingVm.newRecord)"><i class='fa fa-save'></i>Save </button>
+                <button class="btn btn-default" ng-click="settingVm.closeForm()"><i class='fa fa-ban'></i>Cancel</button>
+                <confirm-dialog message="Are you sure you want to delete?" title="Delete Confirmation" ng-if="settingVm.newRecord.id && settingVm.model.name != 'appsetting'"
+                class="btn btn-danger pull-right" on-confirm="settingVm.deleteRecord(settingVm.newRecord)">
+                    <i class="fa fa-trash"></i>Delete
+                </confirm-dialog>
+            </div>
+        </div>
+    </div>
+    <div ng-class="settingVm.gridSize" class="no-padding">
+        <div class="panel panel-default top-default">
+            <div class="table-responsive">
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th class="num_col_1">#</th>
+                            <th>Name</th>
+                            <th>Notes / Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="record in settingVm.records" ng-click="settingVm.edit(record)" 
+                            class="link-row" ng-class="{ active: settingVm.newRecord.id == record.id}">
+                            <td>{{$index + 1}}</td>
+                            <td>{{record.name}}</td>
+                            <td>{{record.notes}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</page-content>

@@ -1,0 +1,14 @@
+<page-header title="User Administration" icon="fa fa-users">
+	<div style="display: flex">
+		<a ui-sref="admin.users" class="btn btn-default" id="option1" ng-class="{ active: $state.current.name == 'admin.users'  }">
+			<i class="fa fa-users"></i> Manage Users
+		</a>
+		<a ui-sref="admin.roles" class="btn btn-default" id="option3" ng-class="{ active: $state.current.name == 'admin.roles'  }">
+			<i class="fa fa-th"></i> Configure Roles
+		</a>
+	</div>
+</page-header>
+
+<div ui-view autoscroll="false">
+
+</div>

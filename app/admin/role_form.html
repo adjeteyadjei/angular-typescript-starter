@@ -1,0 +1,45 @@
+<div class="col-sm-4 no-padding-left" ng-show="rolesVm.showForm">
+    <form role="form" ng-submit="rolesVm.saveRecord(rolesVm.newRecord)">
+        <panel type="box" skin="default">
+            <panel-header title="{{rolesVm.formTitle}}">
+                <button class="btn btn-default btn-sm" ng-click="rolesVm.closeForm()"
+                        data-widget="remove" type="button" uib-tooltip="Close">
+                    <i class="fa fa-ban icon_only"></i>
+                </button>
+            </panel-header>
+            <panel-body>
+                <div>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <div class="form-group">
+                            <input type="text" id="Name" class="form-control"
+                                   ng-model="rolesVm.newRecord.name" ng-required="required" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Privileges:</label>
+                        <select multiple="" ui-select2="{}" id="privileges"
+                                class="form-control" ng-model="rolesVm.newRecord.privileges" ng-required="true"
+                                ng-options="privilege for privilege in rolesVm.privileges"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Notes">Notes:</label>
+                        <div>
+                            <textarea id="Notes" class="form-control" ng-model="rolesVm.newRecord.notes" cols="5" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </panel-body>
+            <panel-footer>
+                <confirm-dialog class="btn btn-danger pull-right" ng-if="rolesVm.newRecord.id" title="Delete Role"
+                                message="Are you want you want to delete this Role" on-confirm="rolesVm.deleteRecord(rolesVm.newRecord)">
+                    <i class="fa fa-trash"></i> Delete
+                </confirm-dialog>
+                <button type="submit" class="btn btn-success"><i class='fa fa-save'></i>Save Role </button>
+                <button type="button" ng-click="rolesVm.closeForm()" class="btn btn-default"><i class="fa fa-ban"></i>Close</button>
+            </panel-footer>
+        </panel>
+    </form>
+</div>

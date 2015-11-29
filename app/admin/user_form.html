@@ -1,0 +1,59 @@
+<div class="col-sm-4 no-padding-left" ng-show="usersVm.showForm">
+	<form role="form" ng-submit="usersVm.saveRecord(usersVm.newRecord)">
+		<panel type="box" skin="default">
+			<panel-header title="{{usersVm.formTitle}}">
+				<button class="btn btn-default btn-sm" ng-click="usersVm.closeForm()" data-widget="remove" type="button" uib-tooltip="Close">
+					<i class="fa fa-ban icon_only"></i>
+				</button>
+			</panel-header>
+			<panel-body>
+				<div class="form-group">
+					<label for="Username">Username:</label>
+					<input type="text" id="Username" ng-disabled="usersVm.newRecord.id" class="form-control" ng-model="usersVm.newRecord.userName" required="required"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="Name">Name:</label>
+					<input type="text" id="Name" class="form-control" ng-model="usersVm.newRecord.name" required="required" />
+				</div>
+
+				<div class="form-group">
+					<label for="PhoneNumber">Phone Number:</label>
+					<input type="text" id="PhoneNumber" class="form-control" ng-model="usersVm.newRecord.phoneNumber" />
+				</div>
+
+				<div class="form-group">
+					<label for="Email">Email:</label>
+					<input type="email" id="Email" class="form-control" ng-model="usersVm.newRecord.email" />
+				</div>
+
+				<div class="form-group">
+					<label for="Password">Password:</label>
+					<input id="Password" type="password" class="form-control" ng-model="usersVm.newRecord.password" />
+				</div>
+
+				<div class="form-group">
+					<label for="ConfirmPassword">Confirm Password:</label>
+					<input id="ConfirmPassword" type="password" class="form-control" ng-model="usersVm.newRecord.confirmPassword" />
+				</div>
+
+				<div class="form-group">
+					<label>Role:</label>
+					<select ui-select2="{ allowClear: true}" class="form-control" 
+						ng-required="true" ng-model="usersVm.newRecord.role" 
+						ng-options="role as role.name for role in usersVm.roles track by role.id"></select>
+				</div>
+
+			</panel-body>
+			<panel-footer>
+				<confirm-dialog class="btn btn-danger pull-right" ng-if="usersVm.newRecord.id" title="Delete User" message="Are you want you want to delete this user?"
+				on-confirm="usersVm.deleteRecord(usersVm.newRecord)">
+					<i class="fa fa-trash"></i> Delete
+				</confirm-dialog>
+				<button type="submit" class="btn btn-success"><i class='fa fa-save'></i>Save User </button>
+				<button type="button" ng-click="usersVm.closeForm()" class="btn btn-default"><i class="fa fa-ban"></i>Close</button>
+			</panel-footer>
+		</panel>
+	</form>
+</div>

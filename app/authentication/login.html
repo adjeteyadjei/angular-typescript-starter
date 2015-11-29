@@ -1,0 +1,40 @@
+<div id="login-body">
+	<div class="login_box">
+		<form ng-submit="loginVm.login(loginVm.formData)" role="form">
+			<div class="login_form card bg-white" style="padding-bottom:28px;">
+				<div class="card-header header-line" style="padding: 0;margin-bottom: 20px;">
+					<h2>
+                        <i class="fa fa-lock"></i> LOGIN
+                        <small>Enter your username and password</small>
+                    </h2>
+				</div>
+				<div class="">
+					<div>
+						<div class="form-group">
+							<label for="username"> Username:</label>
+							<input type="username" required="required" class="form-control" ng-model="loginVm.formData.username" id="username">
+						</div>
+						<div class="form-group">
+							<label for="password"> Password:</label>
+							<input type="password" required="required" class="form-control" ng-model="loginVm.formData.password" id="password">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="loginVm.formData.rememberMe"> Remember Me
+							</label>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div>
+					<button type="submit" class="btn btn-success btn-block btn-lg" ng-if="!loginVm.isLoading">
+						<i class="fa fa-sign-in"></i> Sign in
+					</button>
+					<span class="btn btn-success btn-block btn-lg" disabled ng-if="loginVm.isLoading">
+						<i class="fa fa-spinner fa-spin"></i> checking credentails...
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
