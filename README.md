@@ -1,5 +1,5 @@
 # Angular + Typescript + Webpack 
-This is a seed application for angularjs v1 app using typescript. This seed application comes with the following configured.
+This is a seed application for angularjs and typescript using webpack. This seed application comes with the following configured.
 + Webpack dev server proxy `api` to `http://localhost:7500`
 + Authentication [Login & Auth].
 + Lookups config.
