@@ -1,10 +1,10 @@
 # Angular + Typescript + Webpack 
-This is a seed application for angularjs v1 app using typescript. This seed application comes with the ff configured.
+This is a seed application for angularjs v1 app using typescript. This seed application comes with the following configured.
 + Webpack dev server proxy `api` to `http://localhost:7500`
-+ Authentication service wraped as a component.
-+ Lookups config
-+ User Management
-+ Change Password
++ Authentication [Login & Auth].
++ Lookups config.
++ User Management.
++ Change Password.
 
 #Libraries
 + Angular
