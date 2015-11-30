@@ -41,10 +41,25 @@ class AuthService implements IAuthService {
 
 	login(loginDetails: ILoginParams) {
 		let defer = this.$q.defer()
-		this.$http.post(`${this.baseUrl}/account/login`,
-			loginDetails).then((response: IRequestResult<IUser>) => {
-				defer.resolve(response)
-			})
+		
+		console.warn("Auth not implemented!!!")
+		
+		setTimeout(() => {
+			let res = <IRequestResult<IUser>>{ count: 0,
+				 message: "Login successfull",
+				 success: true, 
+				 data: <IUser>{id: 1, name: loginDetails.username,
+					 	username: loginDetails.username,
+						role: null, token: window.btoa(loginDetails.password)
+				} 
+			}
+			defer.resolve(res)
+		}, 200);
+		
+		// this.$http.post(`${this.baseUrl}/account/login`,
+		// 	loginDetails).then((response: IRequestResult<IUser>) => {
+		// 		defer.resolve(response)
+		// 	})
 		return defer.promise
 	}
 
@@ -59,13 +74,20 @@ class AuthService implements IAuthService {
 
 	logOut() {
 		let defer = this.$q.defer()
-		this.$http.get(`${this.baseUrl}/account/logout`).then((response: IRequestResult<any>) => {
-			if (response.success) {
-				localStorage.removeItem(StoreKeys.CurrentUser)
-				this.currentUser = null
-			}
-			defer.resolve(response)
-		});
+		console.warn("Logout not implemented.")
+		setTimeout(()=> {
+			localStorage.removeItem(StoreKeys.CurrentUser)
+			this.currentUser = null
+			defer.resolve(<IRequestResult<boolean>>{success: true})
+		}, 100);
+		
+		// this.$http.get(`${this.baseUrl}/account/logout`).then((response: IRequestResult<any>) => {
+		// 	if (response.success) {
+		// 		localStorage.removeItem(StoreKeys.CurrentUser)
+		// 		this.currentUser = null
+		// 	}
+		// 	defer.resolve(response)
+		// });
 
 		return defer.promise
 	}

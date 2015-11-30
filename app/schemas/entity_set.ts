@@ -15,25 +15,16 @@ interface ILookUp extends IAuditFields {
 }
 
 interface IUser {
-	id: string
+	id: number
 	username: string
 	name: string
 	token: string
 	role: IRole
-	store: IStore
 }
 
 interface IRole extends IAuditFields {
 	name: string
 	privileges: Array<string>
-}
-
-interface IStore extends IAuditFields {
-	name: string
-	phoneNumber: string
-	email: string
-	manager: string
-	notes: string
 }
 
 interface IExpenseType extends ILookUp { }
