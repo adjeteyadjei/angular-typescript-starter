@@ -6,11 +6,7 @@ This is a seed application for angularjs and typescript using webpack. This seed
 + User Management.
 + Change Password.
 
-<<<<<<< HEAD
 # Libraries
-=======
-## Libraries
->>>>>>> 71bc102365069a3711fa09ed17301506c68e707c
 + Angular
 + Webpack
 + Typescript
