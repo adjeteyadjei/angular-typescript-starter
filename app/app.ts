@@ -8,6 +8,7 @@ import {DashboardCtrl} from "./main/dashboard_ctrl"
 import {LoginCtrl} from "./authentication/login_ctrl"
 import {UserProfileCtrl} from "./user_profile/user_profile_ctrl"
 import {AuthService, IAuthService} from "./authentication/auth_service"
+import {Authorize} from './authentication/authorize'
 import {CustomerService} from './customers/customer_service';
 import {CustomerCtrl} from './customers/customers_ctrl';
 import {SettingsCtrl} from './settings/settings_ctrl';
@@ -18,7 +19,8 @@ import {UserService} from './admin/user_service';
 import {RoleService} from './admin/role_service';
 
 let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngAnimate', 'ngSanitize', 'alcoder.components'])
-	.controller('LoginCtrl', LoginCtrl)
+	.directive('authorize', Authorize.Factory())
+    .controller('LoginCtrl', LoginCtrl)
 	.controller('UserProfileCtrl', UserProfileCtrl)
 	.controller('MainCtrl', MainCtrl)
 	.controller('DashboardCtrl', DashboardCtrl)

@@ -1,6 +1,7 @@
 import { IUser } from "../schemas/entity_set";
 import { IRequestResult } from "../schemas/structure";
 import { StoreKeys, Routes } from "../helpers/config_keys"
+let _ = require("underscore")
 
 interface ILoginParams {
 	username: string
@@ -104,7 +105,7 @@ class AuthService implements IAuthService {
 	}
 
 	isAuthorize(privilege: string) {
-		return true
+		return _.contains(this.currentUser.role.privileges, privilege)
 	}
 
 }
