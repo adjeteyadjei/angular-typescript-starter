@@ -105,8 +105,11 @@ class AuthService implements IAuthService {
 	}
 
 	isAuthorize(privilege: string) {
-		return _.contains(this.currentUser.role.privileges, privilege)
+        let privs = privilege.split("|")
+        let res = _.intersection(this.currentUser.role.privileges, privs)
+        return (res.length > 0)
 	}
+
 
 }
 
