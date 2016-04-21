@@ -2,9 +2,12 @@ import { IUser, IRole } from '../schemas/entity_set'
 import {IModelController, ModelController} from '../schemas/structure'
 import { IUserService, IUserQuery } from './user_service';
 import { IRoleService } from './role_service';
+import {MessageBox} from '../helpers/message_box';
 
 class UsersCtrl extends ModelController<IUser> implements IModelController<IUser> {
 	roles: Array<IRole>;
+	saving: boolean;
+    deleting: boolean;
 
 	static $inject = ["UserService", "RoleService"];
 
@@ -15,15 +18,25 @@ class UsersCtrl extends ModelController<IUser> implements IModelController<IUser
 	}
 
 	saveRecord(user: IUser) {
-		this.userService.save(user).then((res) => {
-			this.afterSave(user, res)
+		let theUser = angular.copy(user)
+		this.saving = true
+		this.userService.save(theUser).then((res) => {
+			this.saving = false
+			this.afterSave(theUser, res)
+			this.loadUsers()
 		})
 	}
 
 	deleteRecord(user: IUser) {
-		this.userService.delete(user.id).then((res) => {
-			this.afterDelete(user, res)
-		})
+		MessageBox.confirm('Delete User', `Are you sure you want to delete ${user.name}?`).then((yes) => {
+            if (yes) {
+                this.deleting = true
+                this.userService.delete(user.id).then((res) => {
+                    this.deleting = false
+                    this.afterDelete(user, res)
+                })
+            }
+        })
 	}
 
 	private loadUsers() {

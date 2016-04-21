@@ -22,12 +22,6 @@ let AppRoutes = ($stateProvider: angular.ui.IStateProvider,
             controller: 'DashboardCtrl',
             controllerAs: 'dashboardVm'
         })
-        .state(Routes.Customers, {
-            url: '/customers',
-            template: require('./customers/customers.html'),
-            controller: 'CustomerCtrl',
-            controllerAs: 'customerVm'
-        })
         .state(Routes.Reports, {
             url: '/reports',
             template: require('./reports/reports.html'),

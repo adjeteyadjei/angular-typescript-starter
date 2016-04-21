@@ -17,7 +17,6 @@ class SysMessages {
 class Routes {
 	static get Login() { return "login" }
 	static get Dashboard() { return "dashboard" }
-	static get Customers() { return "customers" }
 	static get Reports() { return "reports" }
 	static get Settings() { return "settings" }
 	static get GenericSettings() { return "settings.lookup" }
@@ -29,7 +28,6 @@ class Routes {
 
 
 class PartialViews{
-	static get CustomerForm() { return "customer_form" }	
 	static get UserForm() { return "user_form" }	
 	static get RoleForm() { return "role_form" }	
 }

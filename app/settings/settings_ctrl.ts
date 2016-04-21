@@ -1,12 +1,11 @@
-import {ILookUpModel, LookUpService} from "./lookup_service";
+import {ILookUpModel, LookUps} from "./lookup_service";
 import { Routes } from '../helpers/config_keys';
 import {ILookUp} from "../schemas/entity_set";
 import {IRequestResult} from "../schemas/structure"
-
 let _ = require("underscore");
 
 class SettingsCtrl {
-	models = LookUpService.Models;
+	models = LookUps.Models;
 
 	static $inject = ["$state"];
 
@@ -37,7 +36,7 @@ class SettingCtrl {
 		private $http: angular.IHttpService,
 		private $q: angular.IQService,
 		private baseUrl: string) {
-		this.model = _.findWhere(LookUpService.Models, { name: $stateParams['setting'] })
+		this.model = _.findWhere(LookUps.Models, { name: $stateParams['setting'] })
 		this.fetch()
 		this.closeForm()
 	}
