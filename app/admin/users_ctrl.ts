@@ -5,7 +5,7 @@ import { IRoleService } from './role_service';
 import {MessageBox} from '../helpers/message_box';
 
 class UsersCtrl extends ModelController<IUser> implements IModelController<IUser> {
-	roles: Array<IRole>;
+	roles: IRole[];
 	saving: boolean;
     deleting: boolean;
 
