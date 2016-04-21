@@ -1,6 +1,6 @@
-﻿var module = angular.module("alcoder.components", []);
+﻿var alcomponents = angular.module("alcoder.components", []);
 
-module.directive("pageHeader", [function () {
+alcomponents.directive("pageHeader", [function () {
     return {
         'restrict': "E",
         'transclude': true,
@@ -21,7 +21,7 @@ module.directive("pageHeader", [function () {
     };
 }]);
 
-module.directive("pageContent", [function () {
+alcomponents.directive("pageContent", [function () {
     return {
         'restrict': "E",
         'replace': true,
@@ -33,7 +33,7 @@ module.directive("pageContent", [function () {
     };
 }]);
 
-module.directive("confirmDialog", [function () {
+alcomponents.directive("confirmDialog", [function () {
     return {
         'scope': {
             onConfirm: "&",
@@ -53,7 +53,7 @@ module.directive("confirmDialog", [function () {
                 "</p></div><div class='modal-footer'>" +
                 "<button class='btn btn-primary' ng-click='yes()'><i class='fa fa-check-square-o'></i> Yes </button>" +
                 "<button class='btn btn-default' ng-click='no()'><i class='fa fa-ban'></i> No</button></div>";
-            
+
             var confirmModal = {
                 ngClass: "delModal",
                 template: template,
@@ -86,7 +86,7 @@ module.directive("confirmDialog", [function () {
     };
 }]);
 
-module.directive("filterBox", [function () {
+alcomponents.directive("filterBox", [function () {
     return {
         'restrict': "E",
         'transclude': true,
@@ -113,23 +113,26 @@ module.directive("filterBox", [function () {
         }],
         'template': function (tElement, tAttrs) {
             var placeholder = tAttrs["placeholder"] ? tAttrs["placeholder"] : "Search ...";
-            var name = tAttrs["name"] ? tAttrs["name"] : "Name";
+            var name = tAttrs["name"];
             var advance = tAttrs["advance"];
             var view = "<div class=''>" +
                 "<form role='form' id='filterForm'>" +
-                "<div class='input-group form-group clear-margin-right'>" +
-                "<input type='text' class='form-control' ng-model='$parent.filter." + name + "' placeholder='" + placeholder + "' />";
+                "<div class='input-group form-group clear-margin-right' style='display: flex;'>";
 
-            var advanceView = "<div class='input-group-btn advance_search'>" +
-                "<button type='submit' class='btn btn-default'><i class='fa fa-search icon_only'></i></button>" +
-                "<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>" +
-                "<span class='caret'></span></button>" +
-                "<ul class='dropdown-menu dropdown-menu-right filterBox' role='menu'>" +
-                "<div class='elements'>" +
-                "<li><p class='text-center'>---- Advance Search ----</p></li>" +
-                "<div ng-transclude></div></div><li>" +
-                "<button type='submit' class='btn btn-primary btn-block'>" +
-                "<i class='fa fa-search'></i>Search</button></li></ul></div></div>";
+            view += (name) ? "<input type='text' class='form-control' ng-model='$parent.filter."
+                + name + "' placeholder='" + placeholder + "' />" :
+                "<button type='button' class='btn btn-default no-margin'>Filter</button>";
+
+            var advanceView = "<div class='input-group-btn advance_search'>";
+            advanceView += (name) ? "<button type='submit' class='btn btn-default'><i class='fa fa-search icon_only'></i></button>" : ""
+            advanceView += "<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>" +
+            "<span class='caret'></span></button>" +
+            "<ul class='dropdown-menu dropdown-menu-right filterBox' role='menu'>" +
+            "<div class='elements'>" +
+            "<li><p class='text-center'>---- Advance Search ----</p></li>" +
+            "<div ng-transclude></div></div><li>" +
+            "<button type='submit' class='btn btn-primary btn-block'>" +
+            "<i class='fa fa-search'></i>Search</button></li></ul></div></div>";
 
             var simpleView = "<span class='input-group-btn'>" +
                 "<button class='btn btn-default' type='submit'><i class='fa fa-search icon_only'></i></button>" +
@@ -144,7 +147,8 @@ module.directive("filterBox", [function () {
     };
 }]);
 
-module.directive("fileread", [function () {
+
+alcomponents.directive("fileread", [function () {
     return {
         'scope': {
             fileread: "="
@@ -163,7 +167,7 @@ module.directive("fileread", [function () {
     };
 }]);
 
-module.directive("gridControls", [function () {
+alcomponents.directive("gridControls", [function () {
     return {
         'restrict': "E",
         'transclude': true,
@@ -172,7 +176,7 @@ module.directive("gridControls", [function () {
     };
 }]);
 
-module.directive("panel", [function () {
+alcomponents.directive("panel", [function () {
     return {
         'scope': {},
         'restrict': "E",
@@ -186,7 +190,7 @@ module.directive("panel", [function () {
     };
 }]);
 
-module.directive("panelHeader", [function () {
+alcomponents.directive("panelHeader", [function () {
     return {
         'scope': {
             title: "@",
@@ -204,7 +208,7 @@ module.directive("panelHeader", [function () {
     };
 }]);
 
-module.directive("panelBody", [function () {
+alcomponents.directive("panelBody", [function () {
     return {
         'scope': {},
         'restrict': "E",
@@ -218,7 +222,7 @@ module.directive("panelBody", [function () {
     };
 }]);
 
-module.directive("panelFooter", [function () {
+alcomponents.directive("panelFooter", [function () {
     return {
         'scope': {},
         'restrict': "E",
@@ -232,13 +236,13 @@ module.directive("panelFooter", [function () {
     };
 }]);
 
-module.directive("draggable", ["$document", function ($document) {
+alcomponents.directive("draggable", ["$document", function ($document) {
     "use strict";
     return function (scope, element) {
         var startX = 0,
-          startY = 0,
-          x = 0,
-          y = 0;
+            startY = 0,
+            x = 0,
+            y = 0;
         element.on("mousedown", function (event) {
             // Prevent default dragging of selected content
             event.preventDefault();
@@ -272,7 +276,7 @@ module.directive("draggable", ["$document", function ($document) {
     };
 }]);
 
-module.directive("loading", [function () {
+alcomponents.directive("loading", [function () {
     return {
         'scope': {},
         'restrict': "E",
@@ -284,7 +288,7 @@ module.directive("loading", [function () {
     };
 }]);
 
-module.directive("action", [function () {
+alcomponents.directive("action", [function () {
     return {
         'restrict': "E",
         'transclude': true,
@@ -298,7 +302,7 @@ module.directive("action", [function () {
     };
 }]);
 
-module.directive("keyEnter", function () {
+alcomponents.directive("keyEnter", function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
             if (event.which === 13) {
@@ -309,5 +313,32 @@ module.directive("keyEnter", function () {
                 event.preventDefault();
             }
         });
+    };
+});
+
+alcomponents.directive('btnLoading', function () {
+    return {
+        link: function (scope, element, attrs) {
+            scope.$watch(
+                function () {
+                    return scope.$eval(attrs.btnLoading);
+                },
+                function (loading) {
+                    if (loading) {
+                        if (!attrs.hasOwnProperty('ngDisabled')) {
+                            element.addClass('disabled').attr('disabled', 'disabled');
+                        }
+
+                        element.data('resetText', element.html());
+                        element.html(element.data('loading-text'));
+                    } else {
+                        if (!attrs.hasOwnProperty('ngDisabled')) {
+                            element.removeClass('disabled').removeAttr('disabled');
+                        }
+                        element.html(element.data('resetText'));
+                    }
+                }
+            );
+        }
     };
 });
