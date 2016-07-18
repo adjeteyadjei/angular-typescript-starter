@@ -1,6 +1,6 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-import {PartialViews} from './helpers/config_keys';
+import {PartialViews, Routes} from './helpers/config_keys';
 import {AppRoutes} from "./app_routes"
 import {RequestInterceptor} from './services/request_interceptor';
 import {MainCtrl} from "./main/main_ctrl"
@@ -36,7 +36,31 @@ app.config(AppRoutes);
 
 app.value("BASEAPI", "api");
 
-app.run((AuthService: IAuthService) => { AuthService.checkLogin() });
+app.config((uibDatepickerPopupConfig: angular.ui.bootstrap.IDatepickerPopupConfig, uibDatepickerConfig: angular.ui.bootstrap.IDatepickerConfig) => {
+    uibDatepickerConfig.showWeeks = false;
+    uibDatepickerPopupConfig.datepickerPopup = "dd-MMMM-yyyy";
+    uibDatepickerPopupConfig.clearText = "Clear";
+    uibDatepickerPopupConfig.closeText = "Close";
+});
+
+
+app.run(($rootScope: angular.IRootScopeService, $state: angular.ui.IStateService, AuthService: IAuthService) => {
+	$rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+		if (toState.authorize) {
+			if (!AuthService.isLogin()) {
+				//User is not Login
+				$state.transitionTo(Routes.Login)
+				event.preventDefault();
+			} else if (toState.permission) {
+				if (!AuthService.isAuthorize(toState.permission)) {
+					//User doesn't have permission
+					$state.transitionTo(Routes.UnAuthorized)
+					event.preventDefault();
+				}
+			}
+		}
+	})
+});
 
 app.run(($templateCache: angular.ITemplateCacheService) => {
 	$templateCache.put(PartialViews.UserForm, require("./admin/user_form.html"))

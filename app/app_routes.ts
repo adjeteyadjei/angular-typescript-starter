@@ -1,6 +1,6 @@
 import { Routes } from './helpers/config_keys';
 
-let AppRoutes = ($stateProvider: angular.ui.IStateProvider,
+let AppRoutes = ($stateProvider: any,
     $urlRouterProvider: angular.ui.IUrlRouterProvider,
     $httpProvider: angular.IHttpProvider) => {
     $stateProvider
@@ -8,55 +8,82 @@ let AppRoutes = ($stateProvider: angular.ui.IStateProvider,
             url: '/login',
             template: require('./authentication/login.html'),
             controller: 'LoginCtrl',
-            controllerAs: 'loginVm'
+            controllerAs: 'loginVm',
+            menu:'',
+            authorize: false,
+            permission: ''
         })
         .state(Routes.ChangePassword, {
             url: '/changePassword',
             template: require('./user_profile/change_password.html'),
             controller: 'UserProfileCtrl',
-            controllerAs: 'profileVm'
+            controllerAs: 'profileVm',
+            menu:'',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.Dashboard, {
             url: '/dashboard',
             template: require('./main/dashboard.html'),
             controller: 'DashboardCtrl',
-            controllerAs: 'dashboardVm'
+            controllerAs: 'dashboardVm',
+            menu:'dashboard',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.Reports, {
             url: '/reports',
             template: require('./reports/reports.html'),
             //controller: 'ReportsCtrl',
-            //controllerAs: 'reportsVm'
+            //controllerAs: 'reportsVm',
+            menu:'reports',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.Settings, {
             url: '/settings',
             template: require('./settings/settings.html'),
             controller: 'SettingsCtrl',
-            controllerAs: 'settingsVm'
+            controllerAs: 'settingsVm',
+            menu:'settings',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.GenericSettings, {
             url: '/:setting',
             template: require('./settings/generic_grid.html'),
             controller: 'SettingCtrl',
-            controllerAs: 'settingVm'
+            controllerAs: 'settingVm',
+            menu:'settings',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.Admin, {
             url: '/admin',
             template: require('./admin/admin.html'),
             controller: 'UsersCtrl',
-            controllerAs: 'usersVm'
+            controllerAs: 'usersVm',
+            menu:'admin.users',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.Users, {
             url: '/users',
             template: require('./admin/users.html'),
             controller: 'UsersCtrl',
-            controllerAs: 'usersVm'
+            controllerAs: 'usersVm',
+            menu:'admin.users',
+            authorize: true,
+            permission: ''
         })
         .state(Routes.Roles, {
             url: '/roles',
             template: require('./admin/roles.html'),
             controller: 'RolesCtrl',
-            controllerAs: 'rolesVm'
+            controllerAs: 'rolesVm',
+            menu:'admin.users',
+            authorize: true,
+            permission: ''
         })
 
     $urlRouterProvider.otherwise("dashboard");

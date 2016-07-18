@@ -27,16 +27,76 @@ interface IRole extends IAuditFields {
 	privileges: Array<string>
 }
 
-interface IExpenseType extends ILookUp { }
+interface ITitle extends ILookUp { }
 
-interface ICustomer extends IAuditFields {
+interface IPledgeType extends ILookUp { }
+
+interface IProgram extends IAuditFields {
 	name: string
-	cardNumber: string
-	phoneNumber: string
-	email: string
-	residentialAddress: string
-	postalAddress: string
-	totalDebt: number
+	date: Date
+	notes: string
+	beneficiaries: IBeneficiary[]
+}
+class PledgePeriod {
+	static get Monthly() { return "Monthly" }
+	static get Quarterly() { return "Quarterly" }
+	static get Yearly() { return "Yearly" }
 }
 
-export {ILookUp, IUser, IRole, ICustomer, IExpenseType}
+interface IPledge extends IAuditFields {
+	date: Date
+	partner: IPartner
+	partnerId: number
+	period: string
+	typeId: number
+	item: string | number
+	program: IProgram
+	programId: number
+}
+
+interface IPartner extends IAuditFields {
+	title: ITitle
+	titleId: number
+	surname: string
+	otherNames: string
+	email: string
+	address: string
+	phoneNumber: string
+	secondaryPhoneNumber: string
+	dateOfBirth: Date
+	occupation: string
+	placeOfWork: string
+	pledges: IPledge[]
+}
+interface IVolunter extends IAuditFields {
+	title: ITitle
+	titleId: number
+	surname: string
+	otherNames: string
+	email: string
+	address: string
+	phoneNumber: string
+	secondaryPhoneNumber: string
+	dateOfBirth: Date
+	occupation: string
+	placeOfWork: string
+	skills: string
+	interest: string
+	notes: string
+}
+interface IBeneficiary extends IAuditFields {
+	title: ITitle
+	titleId: number
+	surname: string
+	otherNames: string
+	email: string
+	address: string
+	phoneNumber: string
+	secondaryPhoneNumber: string
+	dateOfBirth: Date
+	occupation: string
+	placeOfWork: string
+}
+
+
+export {ILookUp, IUser, IRole, IProgram, IPledgeType, IPledge, IBeneficiary, IVolunter, IPartner}

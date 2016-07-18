@@ -16,6 +16,7 @@ class SysMessages {
 
 class Routes {
 	static get Login() { return "login" }
+	static get UnAuthorized() { return "unauthorized" }
 	static get Dashboard() { return "dashboard" }
 	static get Reports() { return "reports" }
 	static get Settings() { return "settings" }

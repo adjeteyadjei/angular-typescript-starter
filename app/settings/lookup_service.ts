@@ -8,14 +8,19 @@ interface ILookUpModel {
     label: string
     route: string
     store: string
+    hidden: boolean
 }
 
 class LookUps {
-	static get Models(): Array<ILookUpModel> {
-		return [
-			{ label: "App Setting", name: "appsetting", store: "appsetting", route: Routes.GenericSettings }
-		]
-	};
+    static get Models(): Array<ILookUpModel> {
+        return [
+            { label: "Title", name: "title", store: "titles", route: Routes.GenericSettings, hidden: false },
+            { label: "Pledge Type", name: "pledgeTypes", store: "pledgeTypess", route: Routes.GenericSettings, hidden: false },
+            { label: "Program", name: "program", store: "programs", route: Routes.GenericSettings, hidden: true },
+            { label: "Users", name: "user", store: "users", route: Routes.GenericSettings, hidden: true },
+            // { label: "App Setting", name: "appsetting", store: "appsetting", route: Routes.GenericSettings, hidden: false }
+        ]
+    };
 }
 
 interface ILookUpService {

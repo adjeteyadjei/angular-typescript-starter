@@ -2,15 +2,15 @@ interface IRequestResult<T> {
 	data: T
 	success: boolean
 	message: string
-	count: number
+	total: number
 }
 interface IQueryPager {
-	Page: number
-	Size: number
+	page: number
+	size: number
 }
 
-interface IModelQuery {
-	Pager: IQueryPager
+interface IModelFilter {
+	pager: IQueryPager
 }
 
 interface IModelService<T> {
@@ -118,4 +118,4 @@ class ModelController<T> implements IModelController<T>{
 }
 
 
-export {IRequestResult, IQueryPager, IModelQuery, IModelService, IModelController, ModelController}
+export {IRequestResult, IQueryPager, IModelFilter, IModelService, IModelController, ModelController}
