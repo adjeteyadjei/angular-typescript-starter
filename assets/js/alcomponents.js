@@ -117,7 +117,7 @@ alcomponents.directive("filterBox", [function () {
             var advance = tAttrs["advance"];
             var view = "<div class=''>" +
                 "<form role='form' id='filterForm'>" +
-                "<div class='input-group form-group clear-margin-right' style='display: flex;'>";
+                "<div class='input-group form-group clear-margin-right'>";
 
             view += (name) ? "<input type='text' class='form-control' ng-model='$parent.filter."
                 + name + "' placeholder='" + placeholder + "' />" :
