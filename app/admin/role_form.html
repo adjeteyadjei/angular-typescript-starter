@@ -30,10 +30,10 @@
                 </div>
             </panel-body>
             <panel-footer>
-                <button class="btn btn-danger pull-right" btn-loading="rolesVm.deleting" data-loading-text="Deleting...." authorize="CanDeleteRole" ng-if="rolesVm.newRecord.id" ng-click="rolesVm.deleteRecord(rolesVm.newRecord)">
+                <button class="btn btn-danger pull-right" btn-loading="rolesVm.deleting" data-loading-text="Deleting...." authorize="Role.Delete" ng-if="rolesVm.newRecord.id" ng-click="rolesVm.deleteRecord(rolesVm.newRecord)">
                     <i class="fa fa-trash"></i> Delete
                 </button>
-                <button type="submit" btn-loading="rolesVm.saving" data-loading-text="Saving...." authorize="CanCreateRole" class="btn btn-success"><i class='fa fa-save'></i>Save Role </button>
+                <button type="submit" btn-loading="rolesVm.saving" data-loading-text="Saving...." authorize="Role.Create" class="btn btn-success"><i class='fa fa-save'></i>Save Role </button>
                 <button type="button" ng-click="rolesVm.closeForm()" class="btn btn-default"><i class="fa fa-ban"></i>Close</button>
             </panel-footer>
         </panel>

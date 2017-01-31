@@ -1,6 +1,6 @@
 <page-content>
 	<div class="col-sm-12 no-padding">
-		<button type="button" class='btn btn-primary' ng-click="usersVm.addNew()">
+		<button authorize="User.Create" type="button" class='btn btn-primary' ng-click="usersVm.addNew()">
 			<i class='fa fa-user'></i>Add User
 		</button>
 		<loading ng-if="loading"></loading>

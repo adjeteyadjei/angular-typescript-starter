@@ -47,10 +47,10 @@
 
 			</panel-body>
 			<panel-footer>
-				<button class="btn btn-danger pull-right" ng-if="usersVm.newRecord.id" ng-click="usersVm.deleteRecord(usersVm.newRecord)">
+				<button authorize="User.Delete" btn-loading="usersVm.deleting" data-loading-text="Deleting..." class="btn btn-danger pull-right" ng-if="usersVm.newRecord.id" ng-click="usersVm.deleteRecord(usersVm.newRecord)">
 					<i class="fa fa-trash"></i> Delete
 				</button>
-				<button type="submit" class="btn btn-success"><i class='fa fa-save'></i>Save User </button>
+				<button authorize="User.Create" btn-loading="usersVm.saving" data-loading-text="Saving..." type="submit" class="btn btn-success"><i class='fa fa-save'></i>Save User </button>
 				<button type="button" ng-click="usersVm.closeForm()" class="btn btn-default"><i class="fa fa-ban"></i>Close</button>
 			</panel-footer>
 		</panel>

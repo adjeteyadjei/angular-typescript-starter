@@ -1,5 +1,5 @@
 import { IRole } from '../schemas/entity_set'
-import {IModelController, ModelController} from '../schemas/structure'
+import { IModelController, ModelController } from '../schemas/structure'
 import { IRoleService } from './role_service'
 import { MessageBox } from '../helpers/message_box';
 
@@ -20,7 +20,9 @@ class RolesCtrl extends ModelController<IRole> implements IModelController<IRole
             return
         }
 
+        this.saving = true
         this.roleService.save(theRole).then((res) => {
+            this.saving = false
             this.afterSave(theRole, res)
         })
     }
@@ -28,7 +30,9 @@ class RolesCtrl extends ModelController<IRole> implements IModelController<IRole
     deleteRecord(role: IRole) {
         MessageBox.confirm(`Delete Role`, `Are you sure you want to delete ${role.name}?`).then((yes) => {
             if (yes) {
+                this.deleting = true
                 this.roleService.delete(role.id).then((res) => {
+                    this.deleting = false
                     this.afterDelete(role, res)
                 })
             }
@@ -53,4 +57,4 @@ class RolesCtrl extends ModelController<IRole> implements IModelController<IRole
     }
 }
 
-export {RolesCtrl}
+export { RolesCtrl }
