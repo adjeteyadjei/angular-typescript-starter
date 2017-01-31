@@ -42,7 +42,7 @@
 					<label>Role:</label>
 					<select ui-select2="{ allowClear: true}" class="form-control" 
 						ng-required="true" ng-model="usersVm.newRecord.roleId" 
-						ng-options="role.id as role.name for role in usersVm.roles track by role.id"></select>
+						ng-options="role.id as role.name for role in usersVm.roles"></select>
 				</div>
 
 			</panel-body>

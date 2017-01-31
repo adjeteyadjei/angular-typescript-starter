@@ -1,12 +1,15 @@
-import {IUser} from "../schemas/entity_set"
-import {IAuthService} from "../authentication/auth_service"
-import {MessageBox} from "../helpers/message_box"
-import { Routes } from '../helpers/config_keys';
+import { IUser } from "../schemas/entity_set"
+import { IAuthService } from "../authentication/auth_service"
+import { MessageBox } from "../helpers/message_box"
+import { Routes, AppServices, AngularServices } from '../helpers/config_keys';
 
 interface IMenuItem {
-    label: string
-    route: string
-    icon: string
+    label: string;
+    route: string;
+    icon: string;
+    header: boolean;
+    privilege: string;
+    children?: IMenuItem[];
 }
 
 class MainCtrl {
@@ -14,7 +17,7 @@ class MainCtrl {
     username: string;
     menuItems: Array<IMenuItem>
 
-    static $inject = ["$q", "$rootScope", "$state", "AuthService"];
+    static $inject = [AngularServices.Q, AngularServices.RootScope, AngularServices.State, AppServices.AuthService];
 
     constructor(private $q: angular.IQService,
         private $rootScope: any,
@@ -40,7 +43,7 @@ class MainCtrl {
     }
 
     setVersion() {
-        this.version = "0.0.0"
+        this.version = "1.1"
     }
 
     setUserName() {
@@ -54,14 +57,14 @@ class MainCtrl {
 
     setUserMenus() {
         let menus: Array<IMenuItem> = [
-            { label: "Dashboard", route: Routes.Dashboard, icon: "fa fa-dashboard" },
-            { label: "Reports", route: Routes.Reports, icon: "fa fa-bar-chart-o" },
-            { label: "Settings", route: Routes.Settings, icon: "fa fa-cogs" },
-            { label: "Manage Users", route: Routes.Users, icon: "fa fa-users" },
+            { label: "Dashboard", route: Routes.Dashboard, icon: "fa fa-dashboard",privilege: "Dashboard", header: false },
+            { label: "Reports", route: Routes.Reports, icon: "fa fa-bar-chart-o", privilege: "Reports", header: false },
+            { label: "Settings", route: Routes.Settings, icon: "fa fa-cogs", privilege: "Settings", header: false },
+            { label: "Manage Users", route: Routes.Users, icon: "fa fa-users", privilege: "Administration", header: false },
         ]
 
         this.menuItems = menus;
     }
 }
 
-export {MainCtrl}
+export { MainCtrl }

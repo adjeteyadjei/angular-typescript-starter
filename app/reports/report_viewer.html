@@ -1,0 +1,50 @@
+<div class="pageheader_container">
+    <div class="pageheader">
+        <div class="btn-group btn-breadcrumb">
+            <a ui-sref="reports" class="btn btn-default">
+                <i class="fa fa-bar-chart-o"></i> Reports
+            </a>
+            <a href="" class="btn">
+                <b>{{rptViewerVm.report.title}}</b>
+            </a>
+        </div>
+    </div>
+</div>
+
+<page-content>
+    <form ng-submit="rptViewerVm.run(rptViewerVm.filter)">
+        <div class="panel panel-default glass report-filter pull-left">
+            <div class="panel-heading">Filter Parameters</div>
+            <div class="panel-body">
+                <div ng-if="rptViewerVm.report.lookUps" ng-include="rptViewerVm.report.name+'_report'"></div>
+                <div class="form-group" ng-hide="!rptViewerVm.report.dateFilter">
+                    <label>Start Date</label>
+                    <input type="text" class="form-control" id="startDate" name="startDate" uib-datepicker-popup ng-model="rptViewerVm.filter.startDate"
+                    is-open="startDate.isOpen" ng-click="startDate.isOpen=true" />
+                </div>
+
+                <div class="form-group" ng-hide="!rptViewerVm.report.dateFilter">
+                    <label>End Date</label>
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="rptViewerVm.filter.endDate" is-open="endDate.isOpen" ng-click="endDate.isOpen=true"
+                    id="endDate" name="endDate" />
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button btn-loading="rptViewerVm.loading" data-loading-text="Fetching Report Data ...." type="submit" class="btn btn-block btn-success">
+                    <i class="glyphicon glyphicon-compressed"></i> Run Report
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="panel panel-default glass report-preview pull-left">
+        <div class="panel-heading">
+            Report Preview
+        </div>
+        <div class="panel-body no-padding">
+            <div id="report">
+                <div id="rptFrame"></div>
+            </div>
+        </div>
+    </div>
+</page-content>

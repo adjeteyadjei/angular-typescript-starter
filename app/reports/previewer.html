@@ -1,0 +1,12 @@
+<form role="form" ng-submit="viewerVm.save()">
+    <div class="modal-header">
+        <loading class="pull-right" ng-if="viewerVm.loading"></loading>
+        <h4 class="modal-title" id="myModalLabel">{{viewerVm.title}}</h4>
+    </div>
+    <div class="modal-body">
+        <img ng-src="{{viewerVm.document}}" style="width: 865px;" alt="">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="viewerVm.close()"><i class="fa fa-ban"></i>Close</button>
+    </div>
+</form>

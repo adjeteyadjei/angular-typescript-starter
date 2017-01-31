@@ -1,1 +1,17 @@
 <page-header title="Reports" icon="fa fa-bar-chart-o"></page-header>
+<page-content class="reports">
+    <div ng-repeat="group in reportsVm.reportGroups">
+        <div class="page-title">
+            <span>{{group.name}}</span>
+        </div>
+        <div class="row">
+            <div ng-repeat="report in group.reports" class="report-card" ng-click="reportsVm.openReport(report.name)">
+                <div>
+                    <h3 class="title">{{report.title}}</h3>
+                    <p>{{report.notes}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</page-content>

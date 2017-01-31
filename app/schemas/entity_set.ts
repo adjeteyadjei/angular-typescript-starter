@@ -27,16 +27,5 @@ interface IRole extends IAuditFields {
 	privileges: Array<string>
 }
 
-interface IExpenseType extends ILookUp { }
 
-interface ICustomer extends IAuditFields {
-	name: string
-	cardNumber: string
-	phoneNumber: string
-	email: string
-	residentialAddress: string
-	postalAddress: string
-	totalDebt: number
-}
-
-export {ILookUp, IUser, IRole, ICustomer, IExpenseType}
+export {ILookUp, IUser, IRole}

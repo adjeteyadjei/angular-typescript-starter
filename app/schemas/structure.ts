@@ -2,15 +2,15 @@ interface IRequestResult<T> {
 	data: T
 	success: boolean
 	message: string
-	count: number
+	total: number
 }
 interface IQueryPager {
-	Page: number
-	Size: number
+	page: number
+	size: number
 }
 
 interface IModelQuery {
-	Pager: IQueryPager
+	pager: IQueryPager
 }
 
 interface IModelService<T> {
@@ -22,6 +22,9 @@ interface IModelService<T> {
 }
 
 interface IModelController<T> {
+	loading: boolean
+	saving: boolean
+	deleting: boolean
 	showForm: boolean
 	formTitle: string
 	gridSize: string
@@ -40,6 +43,10 @@ class ModelController<T> implements IModelController<T>{
 	private modelName: string = "Record";
 	private get FullGrid() { return "col-sm-12" };
 	private get PartGrid() { return "col-sm-8" };
+
+	loading: boolean
+	saving: boolean
+	deleting: boolean
 	
 	//View Config
 	showForm: boolean;
@@ -111,7 +118,7 @@ class ModelController<T> implements IModelController<T>{
 		}
 	}
 
-	private setUpFormView() {
+	protected setUpFormView() {
 		this.showForm = true
 		this.gridSize = this.PartGrid
 	}
