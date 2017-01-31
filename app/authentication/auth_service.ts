@@ -42,21 +42,23 @@ class AuthService implements IAuthService {
 
 	login(loginDetails: ILoginParams) {
 		let defer = this.$q.defer()
-		
+
 		console.warn("Auth not implemented!!!")
-		
+
 		setTimeout(() => {
-			let res = <IRequestResult<IUser>>{ count: 0,
-				 message: "Login successfull",
-				 success: true, 
-				 data: <IUser>{id: 1, name: loginDetails.username,
-					 	username: loginDetails.username,
-						role: null, token: window.btoa(loginDetails.password)
-				} 
+			let res = <IRequestResult<IUser>>{
+				total: 0,
+				message: "Login successfull",
+				success: true,
+				data: <IUser>{
+					id: 1, name: loginDetails.username,
+					username: loginDetails.username,
+					role: null, token: window.btoa(loginDetails.password)
+				}
 			}
 			defer.resolve(res)
 		}, 200);
-		
+
 		// this.$http.post(`${this.baseUrl}/account/login`,
 		// 	loginDetails).then((response: IRequestResult<IUser>) => {
 		// 		defer.resolve(response)
@@ -76,12 +78,12 @@ class AuthService implements IAuthService {
 	logOut() {
 		let defer = this.$q.defer()
 		console.warn("Logout not implemented.")
-		setTimeout(()=> {
+		setTimeout(() => {
 			localStorage.removeItem(StoreKeys.CurrentUser)
 			this.currentUser = null
-			defer.resolve(<IRequestResult<boolean>>{success: true})
+			defer.resolve(<IRequestResult<boolean>>{ success: true })
 		}, 100);
-		
+
 		// this.$http.get(`${this.baseUrl}/account/logout`).then((response: IRequestResult<any>) => {
 		// 	if (response.success) {
 		// 		localStorage.removeItem(StoreKeys.CurrentUser)
@@ -105,12 +107,12 @@ class AuthService implements IAuthService {
 	}
 
 	isAuthorize(privilege: string) {
-        let privs = privilege.split("|")
-        let res = _.intersection(this.currentUser.role.privileges, privs)
-        return (res.length > 0)
+		let privs = privilege.split("|")
+		let res = _.intersection(this.currentUser.role.privileges, privs)
+		return (res.length > 0)
 	}
 
 
 }
 
-export {AuthService, IAuthService, ILoginParams, IChangePasswordParams}
+export { AuthService, IAuthService, ILoginParams, IChangePasswordParams }
