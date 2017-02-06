@@ -908,3 +908,71 @@ a.action {
 .toast-top-center{
     margin-top: 60px !important;
 }
+
+
+.reports .page-title {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #e3e3e3;
+    font-family: 'RobotoCondensed';
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.reports .page-title span {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    padding-right: 1em;
+    padding-bottom: 6px;
+    color: #444;
+    text-decoration: none;
+    border-bottom: 1px solid $asscent-color;
+}
+
+.report-card{
+    border: 1px solid #D8D8D8;
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.report-card:hover{
+    background-color: #F9F9F9;
+}
+
+.report-card h3{
+    margin-top: 5px;
+}
+
+.report-card p{
+    font-family: sans-serif;
+}
+
+.report-filter{
+    width: 350px;
+    margin-right: 30px;
+}
+
+.report-preview {
+    width: 803px;
+    height: 1179px;
+}
+
+#rptFrame, #docFrame {
+    border: none;
+}
+
+    #rptFrame iframe {
+        width: 800px;
+        height: 1136px;
+    }
+
+    #docFrame iframe {
+        width: 100%;
+        height: 1136px;
+    }

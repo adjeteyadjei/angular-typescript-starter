@@ -8,6 +8,7 @@ require('bootstrap');
 require('angular-ui-bootstrap');
 require('angular-sanitize');
 require("./assets/js/alcomponents")
+require("./assets/js/alservices")
 require("./assets/js/select2.js");
 require("./assets/js/select2-comp.js");
 
