@@ -2,11 +2,12 @@ import { IRole } from '../schemas/entity_set'
 import { IModelController, ModelController } from '../schemas/structure'
 import { IRoleService } from './role_service'
 import { MessageBox } from '../helpers/message_box';
+import { AppServices } from "../helpers/config_keys";
 
 class RolesCtrl extends ModelController<IRole> implements IModelController<IRole> {
     privileges: Array<string>;
 
-    static $inject = ["RoleService"];
+    static $inject = [AppServices.RoleService];
 
     constructor(private roleService: IRoleService) {
         super("Role")

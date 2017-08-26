@@ -6,5 +6,6 @@
 @import 'components';
 @import 'roboto';
 @import 'helpers';
-@import '_app';
-@import '../../node_modules/toastr/build/toastr'
+@import 'toastr';
+@import 'xeditable';
+@import 'hotkeys';

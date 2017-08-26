@@ -1,13 +1,14 @@
-import {ILookUpModel, LookUps} from "./lookup_service";
-import { Routes } from '../helpers/config_keys';
-import {ILookUp} from "../schemas/entity_set";
-import {IRequestResult} from "../schemas/structure"
+import { ILookUpModel, LookUps } from "./lookup_service";
+import { Routes, AngularServices } from '../helpers/config_keys';
+import { ILookUp } from "../schemas/entity_set";
+import { IRequestResult } from "../schemas/structure"
+import { MessageBox } from '../helpers/message_box';
 let _ = require("underscore");
 
 class SettingsCtrl {
-	models = LookUps.Models;
+	models = _.where(LookUps.Models, { hidden: false });
 
-	static $inject = ["$state"];
+	static $inject = [AngularServices.State];
 
 	constructor(private $state: angular.ui.IStateService) { }
 
@@ -28,6 +29,9 @@ class SettingCtrl {
 	newRecord: ILookUp;
 	model: ILookUpModel;
 	records: Array<ILookUp>;
+
+	saving: boolean
+	deleting: boolean
 
 	static $inject = ["$state", "$stateParams", "$http", "$q", "BASEAPI"];
 
@@ -69,10 +73,12 @@ class SettingCtrl {
 	}
 
 	saveRecord(record: ILookUp) {
+		this.saving = true
 		if (record.id) {
 			//Update Record
 			this.$http.put(`${this.baseUrl}/${this.model.name}`, record)
 				.then((response: IRequestResult<ILookUp>) => {
+					this.saving = false
 					if (response.success) {
 						var recordIndex = _.findIndex(this.records, { id: record.id })
 						this.records[recordIndex] = response.data
@@ -83,6 +89,7 @@ class SettingCtrl {
 			//Save New Record
 			this.$http.post(`${this.baseUrl}/${this.model.name}`, record)
 				.then((response: IRequestResult<ILookUp>) => {
+					this.saving = false
 					if (response.success) {
 						this.records.push(response.data)
 						this.closeForm()
@@ -92,14 +99,19 @@ class SettingCtrl {
 	}
 
 	deleteRecord(record: ILookUp) {
-		this.$http.delete(`${this.baseUrl}/${this.model.name}?id=${record.id}`)
-			.then((response: IRequestResult<ILookUp>) => {
-				if (response.success) {
-					var recordIndex = _.findIndex(this.records, { id: record.id })
-					this.records.splice(recordIndex, 1)
-					this.closeForm()
-				}
-			})
+		MessageBox.confirm(`Delete ${this.model.name}`, `Are you sure you want to delete this ${this.model.name}`).then((yes) => {
+			if (yes) {
+				this.deleting = true
+				this.$http.delete(`${this.baseUrl}/${this.model.name}?id=${record.id}`).then((response: IRequestResult<ILookUp>) => {
+					this.deleting = false
+					if (response.success) {
+						var recordIndex = _.findIndex(this.records, { id: record.id })
+						this.records.splice(recordIndex, 1)
+						this.closeForm()
+					}
+				})
+			}
+		})
 	}
 
 	private setUpFormView() {
@@ -109,4 +121,4 @@ class SettingCtrl {
 
 }
 
-export {SettingsCtrl, SettingCtrl}
+export { SettingsCtrl, SettingCtrl }

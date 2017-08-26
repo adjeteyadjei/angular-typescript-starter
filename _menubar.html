@@ -1,0 +1,11 @@
+<div class="sidebar" ng-if="mainVm.isLoggedIn()">
+    <ul class="nav">
+        <li ng-repeat="menu in mainVm.menuItems" ng-class="{ active: $state.current.name == menu.route  }">
+            <a href="" ui-sref="{{menu.route}}">
+                <span ng-class="menu.icon"></span>
+                <br>
+                <label>{{menu.label}}</label>
+            </a>
+        </li>
+    </ul>
+</div>

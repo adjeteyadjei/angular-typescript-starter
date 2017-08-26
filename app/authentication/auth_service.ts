@@ -1,6 +1,6 @@
 import { IUser } from "../schemas/entity_set";
 import { IRequestResult } from "../schemas/structure";
-import { StoreKeys, Routes } from "../helpers/config_keys"
+import { StoreKeys, Routes, AngularServices, AppServices } from "../helpers/config_keys"
 let _ = require("underscore")
 
 interface ILoginParams {
@@ -29,7 +29,7 @@ interface IAuthService {
 class AuthService implements IAuthService {
 	currentUser: IUser;
 
-	static $inject = ["$q", "$http", "$state", "BASEAPI"];
+	static $inject = [AngularServices.Q, AngularServices.Http, AngularServices.State, AppServices.BaseApi];
 
 	constructor(private $q: angular.IQService,
 		private $http: angular.IHttpService,
@@ -41,7 +41,7 @@ class AuthService implements IAuthService {
 	}
 
 	login(loginDetails: ILoginParams) {
-		let defer = this.$q.defer()
+		let defer = this.$q.defer<IRequestResult<IUser>>()
 
 		console.warn("Auth not implemented!!!")
 
@@ -67,7 +67,7 @@ class AuthService implements IAuthService {
 	}
 
 	changePassword(passwordDetails: IChangePasswordParams) {
-		let defer = this.$q.defer()
+		let defer = this.$q.defer<any>()
 		this.$http.post(`${this.baseUrl}/account/changepassword`,
 			passwordDetails).then((response) => {
 				defer.resolve(response)
@@ -76,7 +76,7 @@ class AuthService implements IAuthService {
 	}
 
 	logOut() {
-		let defer = this.$q.defer()
+		let defer = this.$q.defer<IRequestResult<any>>()
 		console.warn("Logout not implemented.")
 		setTimeout(() => {
 			localStorage.removeItem(StoreKeys.CurrentUser)

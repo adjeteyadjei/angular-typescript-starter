@@ -29,9 +29,11 @@ class Routes {
 }
 
 
-class PartialViews{
-	static get UserForm() { return "user_form" }	
-	static get RoleForm() { return "role_form" }	
+class PartialViews {
+	static get UserForm() { return "user_form" }
+	static get RoleForm() { return "role_form" }
+	static get MenuBar() { return "menubar" }
+	static get Header() { return "header" }
 }
 
 
@@ -49,36 +51,41 @@ class AngularServices {
 }
 
 class AppServices {
-    static get BaseApi() { return "BASEAPI" }
-    static get AuthService() { return "AuthService" }
-    static get RequestInterceptor() { return "RequestInterceptor" }
-    static get CustomerService() { return "CustomerService" }
-    static get ProductService() { return "ProductService" }
-    static get SupplierService() { return "SupplierService" }
-    static get UserService() { return "UserService" }
-    static get RoleService() { return "RoleService" }
-    static get StockService() { return "StockService" }
-    static get ReportsConfig() { return "ReportsConfig" }
-    static get LookUpService() { return "LookUpService" }
-    static get StatsService() { return "StatsService" }
+	static get BaseApi() { return "BASEAPI" }
+	static get AuthService() { return "AuthService" }
+	static get RequestInterceptor() { return "RequestInterceptor" }
+	static get CustomerService() { return "CustomerService" }
+	static get ProductService() { return "ProductService" }
+	static get SupplierService() { return "SupplierService" }
+	static get UserService() { return "UserService" }
+	static get RoleService() { return "RoleService" }
+	static get StockService() { return "StockService" }
+	static get ReportsConfig() { return "ReportsConfig" }
+	static get LookUpService() { return "LookUpService" }
+	static get StatsService() { return "StatsService" }
 }
 
 class AppControllers {
-    static get LoginCtrl() { return 'LoginCtrl' }
-    static get UserProfileCtrl() { return 'UserProfileCtrl' }
-    static get MainCtrl() { return 'MainCtrl' }
-    static get DashboardCtrl() { return 'DashboardCtrl' }
-    static get CustomerCtrl() { return 'CustomerCtrl' }
-    static get SupplierCtrl() { return 'SupplierCtrl' }
-    static get ProductCtrl() { return 'ProductCtrl' }
-    static get SettingsCtrl() { return 'SettingsCtrl' }
-    static get SettingCtrl() { return 'SettingCtrl' }
-    static get UsersCtrl() { return 'UsersCtrl' }
-    static get RolesCtrl() { return 'RolesCtrl' }
-    static get ReportsCtrl() { return 'ReportsCtrl' }    
-    static get ReportViewerCtrl() { return 'ReportViewerCtrl' }  
+	static get LoginCtrl() { return 'LoginCtrl' }
+	static get UserProfileCtrl() { return 'UserProfileCtrl' }
+	static get MainCtrl() { return 'MainCtrl' }
+	static get DashboardCtrl() { return 'DashboardCtrl' }
+	static get CustomerCtrl() { return 'CustomerCtrl' }
+	static get SupplierCtrl() { return 'SupplierCtrl' }
+	static get ProductCtrl() { return 'ProductCtrl' }
+	static get SettingsCtrl() { return 'SettingsCtrl' }
+	static get SettingCtrl() { return 'SettingCtrl' }
+	static get UsersCtrl() { return 'UsersCtrl' }
+	static get RolesCtrl() { return 'RolesCtrl' }
+	static get ReportsCtrl() { return 'ReportsCtrl' }
+	static get ReportViewerCtrl() { return 'ReportViewerCtrl' }
+}
+
+class LookUpStores {
+	static get Users() { return "users" }
+	static get Titles() { return "titles" }
 }
 
 
 
-export {StoreKeys, SysMessages, Routes, PartialViews, AppServices, AngularServices, AppControllers}
+export { StoreKeys, SysMessages, Routes, PartialViews, AppServices, AngularServices, AppControllers, LookUpStores }

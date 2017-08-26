@@ -1,11 +1,11 @@
 import {IAuthService, ILoginParams} from "../authentication/auth_service"
 import {MessageBox} from "../helpers/message_box"
-import {Routes} from "../helpers/config_keys"
+import { Routes, AngularServices, AppServices } from "../helpers/config_keys"
 
 class LoginCtrl {
 	isLoading: boolean;
 
-	static $inject = ["$state", "AuthService"];
+	static $inject = [AngularServices.State, AppServices.AuthService];
 
 	constructor(private $state: angular.ui.IStateService,
 		private authService: IAuthService) { }

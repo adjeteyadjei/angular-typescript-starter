@@ -19,8 +19,9 @@ import { ReportViewerCtrl } from './reports/report_viewer_ctrl';
 import { ReportsCtrl } from './reports/reports_ctrl';
 import { ReportsConfig } from './reports/report_config';
 import { LookUpService } from './settings/lookup_service';
+import { AuthRun, TemplatesConfig, XeditableConfig, DatePickerConfig, ChartConfig, HotKeysConfig } from "./app_config";
 
-let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngAnimate', 'ngSanitize', 'alcoder.components', 'alcoder.services'])
+let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngAnimate', 'ngSanitize', 'alcoder.components', 'alcoder.services', 'xeditable', 'chart.js', 'cfp.hotkeys'])
 	.directive(Authorize.Name, Authorize.Factory())
 	.directive(UnAuthorize.Name, UnAuthorize.Factory())
 	.controller(AppControllers.LoginCtrl, LoginCtrl)
@@ -44,43 +45,13 @@ let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngA
 app.config(AppRoutes);
 
 app.value("BASEAPI", "api");
+app.run(AuthRun);
+app.run(TemplatesConfig);
+app.run(XeditableConfig);
 
-app.config((uibDatepickerPopupConfig: angular.ui.bootstrap.IDatepickerPopupConfig, uibDatepickerConfig: angular.ui.bootstrap.IDatepickerConfig) => {
-	uibDatepickerConfig.showWeeks = false;
-	uibDatepickerPopupConfig.datepickerPopup = "dd-MMMM-yyyy";
-	uibDatepickerPopupConfig.clearText = "Clear";
-	uibDatepickerPopupConfig.closeText = "Close";
-});
-
-
-app.run(($rootScope: angular.IRootScopeService, $state: angular.ui.IStateService, AuthService: IAuthService) => {
-	$rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-		if (toState.authorize) {
-			if (!AuthService.isLogin()) {
-				//User is not Login
-				$state.transitionTo(Routes.Login)
-				event.preventDefault();
-			} else if (toState.permission) {
-				if (!AuthService.isAuthorize(toState.permission)) {
-					//User doesn't have permission
-					$state.transitionTo(Routes.UnAuthorized)
-					event.preventDefault();
-				}
-			}
-		}
-	})
-});
-
-app.run(($templateCache: angular.ITemplateCacheService) => {
-	$templateCache.put(PartialViews.UserForm, require("./admin/user_form.html"))
-	$templateCache.put(PartialViews.RoleForm, require("./admin/role_form.html"))
-
-	ReportsConfig.reportsList().forEach((report) => {
-		if (report.lookUps) {
-			$templateCache.put(`${report.name}_report`, ReportsConfig.makeFilterTemplate(report))
-		}
-	})
-})
+app.config(DatePickerConfig);
+app.config(ChartConfig);
+app.config(HotKeysConfig)
 
 //Hide Preloader
 $("#preloader-body").hide();

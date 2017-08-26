@@ -1,39 +1,58 @@
 'use strict';
 var webpack = require("webpack");
+const path = require('path');
 module.exports = {  
   entry: [
-    "bootstrap-sass!./assets/js/bootstrap-sass-config.js",
+    "./vendor.js",
+    "./assets/css/_main.scss",
     "./index.js"
   ],
   output: {
-    path: 'build',
+    path: path.resolve(__dirname, "build"),
     filename: 'bundle.js'
   },  
   devtool: 'source-map',
   resolve: {
-    extensions:  ['', '.webpack.js', '.web.js', '.ts', '.js']
+    extensions:  ['.webpack.js', '.web.js', '.ts', '.js']
   },
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
-      "window.jQuery": "jquery"
+      "window.jQuery": "jquery",
+      jquery: "jquery"
     })
   ],
   module: {
-    loaders: [
-      { test: /\.ts$/, loader: 'awesome-typescript-loader' },
-      { test: /\.html/, loader: 'raw' },
-      { test: /\.css$/, loader: "style-loader!css-loader" },
-      { test: /\.scss$/,loader: 'style!css!sass' },
-      { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=res/[name].[ext]?[hash]'
+    rules: [
+      { test: /\.ts$/, use: 'awesome-typescript-loader' },
+      { test: /\.html/, use: 'raw-loader' },
+      { test: /\.css$/, use: "style-loader!css-loader" },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: './assets/**/*.scss',
+            },
+          },
+        ],
+      },
+      { test: /bootstrap\/dist\/js\/umd\//, use: 'imports?jQuery=jquery' },
+      {
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'file-loader?name=res/[name].[ext]?[hash]'
       },
     ]
   },
   devServer: {
       proxy: [{
-          path: '/api/*',
+          path: '/api/**',
           target: 'http://127.0.0.1:7500'
       }]
   }  

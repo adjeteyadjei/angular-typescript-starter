@@ -28,12 +28,12 @@
                 </div>
             </div>
             <div class="box-footer">
-                <button class="btn btn-success" id="save" ng-click="settingVm.saveRecord(settingVm.newRecord)"><i class='fa fa-save'></i>Save </button>
-                <button class="btn btn-default" ng-click="settingVm.closeForm()"><i class='fa fa-ban'></i>Cancel</button>
-                <confirm-dialog message="Are you sure you want to delete?" title="Delete Confirmation" ng-if="settingVm.newRecord.id && settingVm.model.name != 'appsetting'"
-                class="btn btn-danger pull-right" on-confirm="settingVm.deleteRecord(settingVm.newRecord)">
+                <button class="btn btn-success" ng-click="settingVm.saveRecord(settingVm.newRecord)" btn-loading="settingVm.saving" data-loading-text="Saving..." id="save" type="submit"><i class='fa fa-save'></i>Save</button>
+                <button class="btn btn-default" type="button" ng-click="settingVm.closeForm()"><i class='fa fa-ban'></i>Cancel</button>
+                <button type="button" ng-if="settingVm.newRecord.id && settingVm.model.name != 'appsetting'" btn-loading="settingVm.deleting"
+                    data-loading-text="Deleting" class="btn btn-danger pull-right" ng-click="settingVm.deleteRecord(settingVm.newRecord)">
                     <i class="fa fa-trash"></i>Delete
-                </confirm-dialog>
+                </button>
             </div>
         </div>
     </div>

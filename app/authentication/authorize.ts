@@ -1,4 +1,5 @@
 import {IAuthService} from './auth_service';
+import { AppServices } from "../helpers/config_keys";
 
 class Authorize {
     public link: (scope: angular.IScope, element: angular.IAugmentedJQuery, attrs: angular.IAttributes) => void;
@@ -17,7 +18,7 @@ class Authorize {
             return new Authorize(authService);
         };
 
-        directive['$inject'] = ['AuthService'];
+        directive['$inject'] = [AppServices.AuthService];
 
         return directive;
     }
@@ -42,7 +43,7 @@ class UnAuthorize {
             return new UnAuthorize(authService);
         };
 
-        directive['$inject'] = ['AuthService'];
+        directive['$inject'] = [AppServices.AuthService];
 
         return directive;
     }
