@@ -62,10 +62,15 @@ let HotKeysConfig = (hotkeysProvider: any) => {
     hotkeysProvider.includeCheatSheet = true;
 }
 
+let AutoValidateConfig = (validator: any) => {
+    validator.setValidElementStyling(false);
+}
+
 XeditableConfig.$inject = ['editableOptions']
 DatePickerConfig.$inject = ['uibDatepickerPopupConfig', 'uibDatepickerConfig']
 TemplatesConfig.$inject = ['$templateCache'];
 ChartConfig.$inject = ['ChartJsProvider'];
 HotKeysConfig.$inject = ['hotkeysProvider'];
+AutoValidateConfig.$inject = ['validator'];
 
-export { DatePickerConfig, AuthRun, TemplatesConfig, XeditableConfig, ChartConfig, HotKeysConfig }
+export { DatePickerConfig, AuthRun, TemplatesConfig, XeditableConfig, ChartConfig, HotKeysConfig, AutoValidateConfig }

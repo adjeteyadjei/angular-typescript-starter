@@ -342,3 +342,46 @@ alcomponents.directive('btnLoading', function () {
         }
     };
 });
+
+alcomponents.directive('numbersOnly', ['defaultErrorMessageResolver', function (defaultErrorMessageResolver) {
+    defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
+        errorMessages['numbersOnly'] = 'Invalid number.';
+    });
+
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attributes, ngModel) {
+            ngModel.$validators.numbersOnly = function (modelValue) {
+                return (modelValue) ? /^\d*$/.test(modelValue) : true
+            };
+
+            scope.$watch('numbersOnly', function () {
+                ngModel.$validate();
+            });
+        }
+    };
+}]);
+
+alcomponents.directive('confirmPassword', ['defaultErrorMessageResolver', function (defaultErrorMessageResolver) {
+    defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
+        errorMessages['confirmPassword'] = 'Please ensure the passwords match.';
+    });
+
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        scope: {
+            confirmPassword: '=confirmPassword'
+        },
+        link: function (scope, element, attributes, ngModel) {
+            ngModel.$validators.confirmPassword = function (modelValue) {
+                return modelValue === scope.confirmPassword;
+            };
+
+            scope.$watch('confirmPassword', function () {
+                ngModel.$validate();
+            });
+        }
+    };
+}]);

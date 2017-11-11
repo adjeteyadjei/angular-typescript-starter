@@ -19,7 +19,7 @@ import { ReportViewerCtrl } from './reports/report_viewer_ctrl';
 import { ReportsCtrl } from './reports/reports_ctrl';
 import { ReportsConfig } from './reports/report_config';
 import { LookUpService } from './settings/lookup_service';
-import { AuthRun, TemplatesConfig, XeditableConfig, DatePickerConfig, ChartConfig, HotKeysConfig } from "./app_config";
+import { AuthRun, TemplatesConfig, XeditableConfig, DatePickerConfig, ChartConfig, HotKeysConfig, AutoValidateConfig } from "./app_config";
 
 let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngAnimate', 'ngSanitize', 'alcoder.components', 'alcoder.services', 'xeditable', 'chart.js', 'cfp.hotkeys'])
 	.directive(Authorize.Name, Authorize.Factory())
@@ -48,6 +48,7 @@ app.value("BASEAPI", "api");
 app.run(AuthRun);
 app.run(TemplatesConfig);
 app.run(XeditableConfig);
+app.run(AutoValidateConfig);
 
 app.config(DatePickerConfig);
 app.config(ChartConfig);
