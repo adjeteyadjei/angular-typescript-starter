@@ -1,12 +1,12 @@
-<form role="form" ng-submit="viewerVm.save()">
-    <div class="modal-header">
-        <loading class="pull-right" ng-if="viewerVm.loading"></loading>
-        <h4 class="modal-title" id="myModalLabel">{{viewerVm.title}}</h4>
+<div class="modal-header">
+    <button type="button" class="btn btn-sm btn-default pull-right" ng-click="viewerVm.close()"><i class="fa fa-ban"></i>Close</button>
+    <h4 class="modal-title" id="myModalLabel">Document Viewer</h4>
+</div>
+<div class="modal-body" style="text-align: center;">
+    <div id="report">
+        <div id="rptFrame"></div>
     </div>
-    <div class="modal-body">
-        <img ng-src="{{viewerVm.document}}" style="width: 865px;" alt="">
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="viewerVm.close()"><i class="fa fa-ban"></i>Close</button>
-    </div>
-</form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="viewerVm.close()"><i class="fa fa-ban"></i>Close</button>
+</div>

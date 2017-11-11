@@ -34,6 +34,7 @@ class PartialViews {
 	static get RoleForm() { return "role_form" }
 	static get MenuBar() { return "menubar" }
 	static get Header() { return "header" }
+	static get DocumentViewer() { return "doc_viewer" }
 }
 
 
@@ -61,6 +62,7 @@ class AppServices {
 	static get RoleService() { return "RoleService" }
 	static get StockService() { return "StockService" }
 	static get ReportsConfig() { return "ReportsConfig" }
+	static get ReportService() { return "ReportService" }
 	static get LookUpService() { return "LookUpService" }
 	static get StatsService() { return "StatsService" }
 }
@@ -79,6 +81,7 @@ class AppControllers {
 	static get RolesCtrl() { return 'RolesCtrl' }
 	static get ReportsCtrl() { return 'ReportsCtrl' }
 	static get ReportViewerCtrl() { return 'ReportViewerCtrl' }
+	static get PreviewerCtrl() { return 'PreviewerCtrl' }
 }
 
 class LookUpStores {

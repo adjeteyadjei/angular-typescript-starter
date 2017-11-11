@@ -18,10 +18,11 @@ import { RoleService } from './admin/role_service';
 import { ReportViewerCtrl } from './reports/report_viewer_ctrl';
 import { ReportsCtrl } from './reports/reports_ctrl';
 import { ReportsConfig } from './reports/report_config';
+import { ReportService } from "./reports/report_service";
 import { LookUpService } from './settings/lookup_service';
 import { AuthRun, TemplatesConfig, XeditableConfig, DatePickerConfig, ChartConfig, HotKeysConfig, AutoValidateConfig } from "./app_config";
 
-let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngAnimate', 'ngSanitize', 'alcoder.components', 'alcoder.services', 'xeditable', 'chart.js', 'cfp.hotkeys'])
+let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngAnimate', 'ngSanitize', 'alcoder.components', 'alcoder.services', 'xeditable', 'chart.js', 'cfp.hotkeys', 'jcs-autoValidate'])
 	.directive(Authorize.Name, Authorize.Factory())
 	.directive(UnAuthorize.Name, UnAuthorize.Factory())
 	.controller(AppControllers.LoginCtrl, LoginCtrl)
@@ -40,6 +41,7 @@ let app = angular.module('app', ['ui.router', 'ui.bootstrap', 'ui.select2', 'ngA
 	.service(AppServices.RoleService, RoleService)
 	.service(AppServices.LookUpService, LookUpService)
 	.service(AppServices.ReportsConfig, ReportsConfig)
+	.service(AppServices.ReportService, ReportService)
 
 
 app.config(AppRoutes);
