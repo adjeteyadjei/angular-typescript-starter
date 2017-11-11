@@ -3,6 +3,10 @@
         "module": "commonjs",
         "noImplicitAny": true,
         "sourceMap": true,
-        "target": "ES5"
+        "target": "ES5",
+        "lib": [
+            "dom",
+            "es2016"
+        ]
     }
 }
