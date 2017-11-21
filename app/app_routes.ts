@@ -2,7 +2,8 @@ import { Routes, AppServices, AppControllers } from './helpers/config_keys';
 
 let AppRoutes = ($stateProvider: any,
     $urlRouterProvider: angular.ui.IUrlRouterProvider,
-    $httpProvider: angular.IHttpProvider) => {
+    $httpProvider: angular.IHttpProvider,
+    $locationProvider: angular.ILocationProvider) => {
     $stateProvider
         .state(Routes.Login, {
             url: '/login',
@@ -100,8 +101,9 @@ let AppRoutes = ($stateProvider: any,
             permission: ''
         })
 
+    $locationProvider.hashPrefix('');
     $urlRouterProvider.otherwise(Routes.Dashboard);
     $httpProvider.interceptors.push(AppServices.RequestInterceptor)
 }
-AppRoutes.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider']
+AppRoutes.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider']
 export { AppRoutes }
