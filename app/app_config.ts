@@ -38,6 +38,7 @@ let TemplatesConfig = ($templateCache: angular.ITemplateCacheService) => {
     $templateCache.put(PartialViews.RoleForm, require("./admin/role_form.html"))
     $templateCache.put(PartialViews.MenuBar, require("../_menubar.html"))
     $templateCache.put(PartialViews.Header, require("../_header.html"))
+    $templateCache.put(PartialViews.DocumentViewer, require("./reports/previewer.html"))
     ReportsConfig.reportsList().forEach((report) => {
         if (report.lookUps) {
             $templateCache.put(`${report.name}_report`, ReportsConfig.makeFilterTemplate(report))
